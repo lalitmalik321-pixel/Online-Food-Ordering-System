@@ -198,38 +198,6 @@ java -cp ".:../lib/mysql-connector-j-9.7.0.jar" app.Main
 - JWT Authentication
 - Docker Deployment
 
----
-
-## 📷 Screenshots
-
-Add screenshots in a folder named `screenshots`.
-
-Example:
-
-```
-screenshots/
-├── main-menu.png
-├── login.png
-├── menu.png
-├── order.png
-└── history.png
-```
-
-Then display them in the README:
-
-```md
-### Main Menu
-
-![Main Menu](screenshots/main-menu.png)
-
-### Food Menu
-
-![Food Menu](screenshots/menu.png)
-
-### Order History
-
-![Order History](screenshots/history.png)
-```
 
 ---
 
