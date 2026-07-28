@@ -33,35 +33,42 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+public int loginUser(String email, String password) {
 
-    public boolean loginUser(String email, String password) {
+    try {
 
-        try {
+        Connection con = DBConnection.getConnection();
 
-            Connection con = DBConnection.getConnection();
+        String sql = "SELECT * FROM users WHERE email=? AND password=?";
 
-            String sql = "SELECT * FROM users WHERE email=? AND password=?";
+        PreparedStatement ps = con.prepareStatement(sql);
 
-            PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, email);
+        ps.setString(2, password);
 
-            ps.setString(1, email);
-            ps.setString(2, password);
+        ResultSet rs = ps.executeQuery();
 
-            ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
 
-            if (rs.next()) {
-                System.out.println("✅ Login Successful!");
-                return true;
-            }
+    System.out.println("\n==================================");
+    System.out.println("✅ Login Successful!");
+    System.out.println("Welcome to Online Food Ordering!");
+    System.out.println("==================================");
 
-            System.out.println("❌ Invalid Email or Password!");
+    return rs.getInt("id");
 
-            con.close();
+}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println("❌ Invalid Email or Password!");
 
-        return false;
-    }
+        con.close();
+
+    } catch (java.sql.SQLIntegrityConstraintViolationException e) {
+    System.out.println("❌ Email already registered. Please use another email.");
+} catch (Exception e) {
+    System.out.println("❌ Something went wrong. Please try again.");
+}
+
+    return -1;
+}
 }

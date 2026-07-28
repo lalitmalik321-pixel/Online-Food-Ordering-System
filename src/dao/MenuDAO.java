@@ -2,6 +2,7 @@ package dao;
 
 import database.DBConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
@@ -35,4 +36,60 @@ public class MenuDAO {
             e.printStackTrace();
         }
     }
+    public double getPriceByFoodId(int foodId) {
+
+    double price = 0;
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql = "SELECT price FROM menu WHERE id = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, foodId);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            price = rs.getDouble("price");
+        }
+
+        con.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return price;
+}
+public String getFoodNameById(int foodId) {
+
+    String foodName = "";
+
+    try {
+
+        Connection con = DBConnection.getConnection();
+
+        String sql = "SELECT food_name FROM menu WHERE id = ?";
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, foodId);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            foodName = rs.getString("food_name");
+        }
+
+        con.close();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return foodName;
+}
 }
