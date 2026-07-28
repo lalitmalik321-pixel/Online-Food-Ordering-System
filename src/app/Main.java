@@ -96,41 +96,46 @@ public class Main {
 
                     double total = price * quantity;
 
-String foodName = menuDAO.getFoodNameById(foodId);
+                    String foodName = menuDAO.getFoodNameById(foodId);
 
-System.out.println("\n==============================");
-System.out.println("        ORDER BILL");
-System.out.println("==============================");
-System.out.println("Food Name  : " + foodName);
-System.out.println("Price      : ₹" + price);
-System.out.println("Quantity   : " + quantity);
-System.out.println("------------------------------");
-System.out.println("Total Bill : ₹" + total);
-System.out.println("==============================");
+                    Order order = new Order(loggedInUserId, foodId, quantity, total);
 
-Order order = new Order(loggedInUserId, foodId, quantity, total);
+                    // Save order to database
+                    orderDAO.placeOrder(order);
+
+                    // Print Bill
+                    System.out.println("\n==============================");
+                    System.out.println("        ORDER BILL");
+                    System.out.println("==============================");
+                    System.out.println("Food Name  : " + foodName);
+                    System.out.println("Price      : ₹" + price);
+                    System.out.println("Quantity   : " + quantity);
+                    System.out.println("------------------------------");
+                    System.out.println("Total Bill : ₹" + total);
+                    System.out.println("==============================");
 
                     break;
 
-               case 5:
+                case 5:
 
-             if (loggedInUserId == -1) {
-        System.out.println("❌ Please login first!");
-        break;
-    }
+                    if (loggedInUserId == -1) {
+                        System.out.println("❌ Please login first!");
+                        break;
+                    }
 
-             orderDAO.viewOrders(loggedInUserId);
+                    orderDAO.viewOrders(loggedInUserId);
 
-             break;
+                    break;
+
                 case 6:
 
-                    System.out.println("Thank You!");
+                    System.out.println("\nThank You for using Online Food Ordering System!");
                     sc.close();
                     System.exit(0);
 
                 default:
 
-                    System.out.println("Invalid Choice!");
+                    System.out.println("❌ Invalid Choice!");
             }
         }
     }
