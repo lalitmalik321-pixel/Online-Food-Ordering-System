@@ -238,7 +238,7 @@ Then display them in the README:
 **Lalit Malik**
 
 - GitHub: https://github.com/lalitmalik321-pixel
-- LinkedIn: *(Add your LinkedIn profile URL here)*
+- LinkedIn: (https://www.linkedin.com/in/lalit-singh-malik-25a09a3a7)
 
 ---
 
